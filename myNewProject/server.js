@@ -1,10 +1,13 @@
 const express = require('express');
-const cors = require('cors') // This is new
+const cors = require('cors');
 const app = express();
 require('dotenv').config();
-const PORT = process.env.PORT;
-   
-require('./server/routes/person.routes')(app); // This is new
+const port = process.env.PORT;
+require('./server/config/mongoose.config'); // This is new
+app.use(cors());
+app.use(express.json()); // This is new
+app.use(express.urlencoded({ extended: true })); // This is new
+require('./server/routes/person.routes')(app);
 
+app.listen(port, () => console.log(`Listening on port: ${port}`) );
 
-app.listen(PORT, () => console.log(`Listening on port: ${PORT}`) );
