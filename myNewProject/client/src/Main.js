@@ -10,7 +10,7 @@ export default () => {
     return (
         <div>
             <PersonForm />
-            <h2>Message from the backend: {message}</h2>
+            {/*<h2>Message from the backend: {message}</h2>*/}
         </div>
     )
 }
