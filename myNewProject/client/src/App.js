@@ -1,11 +1,16 @@
 import logo from './logo.svg';
 import './App.css';
-import Main from './Main'
+import Main from './views/Main'
+import {Route, Routes} from "react-router-dom";
+import Detail from "./views/Detail";
 
 function App() {
   return (
     <div className="App">
-      <Main />
+        <Routes>
+            <Route element={<Main/>} path="/people/" />
+            <Route element={<Detail/>} path="/people/:id" />
+        </Routes>
     </div>
   );
 }

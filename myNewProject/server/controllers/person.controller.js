@@ -1,17 +1,32 @@
 const { Person } = require('../models/person.model');
-module.exports.index = (request, response) => {
-    response.json({
+const {res} = require("express");
+module.exports.index = (req, res) => {
+    res.json({
         message: "Hello World"
     });
 }
 // The method below is new
-module.exports.createPerson = (request, response) => {
-    const { firstName, lastName } = request.body;
+module.exports.createPerson = (req, res) => {
+    const { firstName, lastName } = req.body;
     Person.create({
         firstName,
         lastName
     })
-        .then(person => response.json(person))
-        .catch(err => response.json(err));
+        .then(person => res.json(person))
+        .catch(err => res.json(err));
 }
+// add in list and detail
+module.exports.getAllPeople = (req, res) => {
+    Person.find({})
+        .then(persons => res.json(persons))
+        .catch(err => res.json(err))
+}
+
+module.exports.getPerson = (req, res) => {
+    Person.findOne({_id:req.params.id})
+        .then(person => res.json(person))
+        .catch(err => res.json(err))
+}
+
+
 
