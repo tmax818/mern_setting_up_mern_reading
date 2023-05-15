@@ -14,9 +14,13 @@ const PersonForm = () => {
 		axios.post('http://localhost:8000/api/people', {
 			firstName,
 			lastName
-		})
+		}
+		)
 			.then(res=>console.log(res))
 			.catch(err=>console.log(err))
+
+		setFirstName("");
+		setLastName("");
 	}
 	//onChange to update firstName and lastName
 	return (
